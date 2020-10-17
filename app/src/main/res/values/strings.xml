@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyAnimeZ</string>
+    <string name="top_anime">Top Anime</string>
+    <string name="top_tv">Top TV</string>
 </resources>

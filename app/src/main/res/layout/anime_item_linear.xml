@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:padding="5dp"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="7dp"
+        >
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="130dp"
+        android:id="@+id/anime_image"
+        android:scaleType="centerCrop"
+        />
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textSize="13sp"
+            android:layout_weight="1"
+            android:id="@+id/anime_name"
+            android:gravity="left|center"
+
+            android:textColor="@android:color/white"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:layout_gravity="left"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:src="@drawable/baseline_star_rate_white_24dp"
+                />
+
+            <TextView
+                android:id="@+id/anime_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="2.2"
+                android:textSize="12sp"
+                android:textColor="@android:color/white"
+                android:gravity="left|center"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

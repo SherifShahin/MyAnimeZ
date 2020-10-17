@@ -1,0 +1,100 @@
+package myanimez.com.Fragment
+
+import android.os.Bundle
+import android.view.*
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.top_anime_fragment.*
+import myanimez.com.Adapter.AnimeAdapter
+import myanimez.com.Adapter.ExampleLoadStateAdapter
+import myanimez.com.R
+import myanimez.com.ViewModel.TopAnimeViewModel
+import org.koin.android.ext.android.get
+
+
+class TopTvAnimeFragment : Fragment() {
+
+    private lateinit var viewModel: TopAnimeViewModel
+
+    private lateinit var toolbar: ActionBar
+
+    private var TopType = "tv"
+
+    private lateinit var adapter: AnimeAdapter
+
+    private var isGridView : Boolean = true
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.top_anime_fragment, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        viewModel = get()
+
+        adapter = get()
+
+        top_anime_recycleview.adapter = adapter.withLoadStateFooter(footer = ExampleLoadStateAdapter{ adapter.retry() })
+
+        val layoutManager = GridLayoutManager(context, 3)
+
+        top_anime_recycleview.layoutManager = layoutManager
+
+        viewModel.getTopAnimes(TopType).observe(viewLifecycleOwner , Observer {
+            adapter.submitData(lifecycle,it)
+        })
+
+        toolbar = (activity as AppCompatActivity?)!!.supportActionBar!!
+
+        toolbar.title = "Top TV"
+
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.top_anime, menu)
+        super.onCreateOptionsMenu(menu,inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId)
+        {
+            R.id.top_tv_list_view -> {
+                isGridView = !isGridView
+
+                 if(isGridView){
+                     top_anime_recycleview.layoutManager = GridLayoutManager(context, 3)
+                     item.icon = ContextCompat.getDrawable(context!!, R.drawable.ic_list)
+                 }
+                else{
+                     top_anime_recycleview.layoutManager =
+                         LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false)
+                     item.icon = ContextCompat.getDrawable(context!!, R.drawable.ic_grid)
+                 }
+
+                adapter.isGridView(isGridView)
+
+                top_anime_recycleview.adapter =
+                    adapter.withLoadStateFooter(footer = ExampleLoadStateAdapter{ adapter.retry()})
+
+                true
+            }
+
+            else -> {
+                false
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+}
