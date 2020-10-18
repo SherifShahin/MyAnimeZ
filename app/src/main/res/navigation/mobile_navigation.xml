@@ -19,5 +19,10 @@
         android:label="fragment_top_airing_anime"
         tools:layout="@layout/fragment_top_airing_anime"
         />
+    <fragment
+        android:id="@+id/topMovieAnimeFragment"
+        android:name="myanimez.com.Fragment.TopMovieAnimeFragment"
+        android:label="fragment_top_movie_anime"
+        tools:layout="@layout/fragment_top_movie_anime" />
 
 </navigation>

@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration
             .Builder(
                 R.id.topAiringAnimeFragment,
-                R.id.topAnimeFragment
+                R.id.topAnimeFragment ,
+                R.id.topMovieAnimeFragment
             ).setOpenableLayout(drawer_layout)
             .build()
 

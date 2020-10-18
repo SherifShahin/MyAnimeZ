@@ -14,6 +14,11 @@
                 android:id="@+id/topAiringAnimeFragment"
                 android:title="@string/top_airing"
                 />
+
+            <item
+                android:id="@+id/topMovieAnimeFragment"
+                android:title="@string/top_movie"
+                />
         </menu>
     </item>
 </menu>
