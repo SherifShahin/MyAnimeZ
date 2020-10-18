@@ -24,5 +24,10 @@
         android:name="myanimez.com.Fragment.TopMovieAnimeFragment"
         android:label="fragment_top_movie_anime"
         tools:layout="@layout/fragment_top_movie_anime" />
+    <fragment
+        android:id="@+id/topUpcomingAnimeFragment"
+        android:name="myanimez.com.Fragment.TopUpcomingAnimeFragment"
+        android:label="fragment_top_upcoming_anime"
+        tools:layout="@layout/fragment_top_upcoming_anime" />
 
 </navigation>
