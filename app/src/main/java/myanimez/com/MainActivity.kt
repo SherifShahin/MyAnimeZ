@@ -2,8 +2,9 @@ package myanimez.com
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.widget.Toast
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,10 +19,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         navController = findNavController(R.id.nav_host_fragment)
 
-        appBarConfiguration = AppBarConfiguration(navController.graph,drawer_layout)
+        appBarConfiguration = AppBarConfiguration
+            .Builder(
+                R.id.topAiringAnimeFragment,
+                R.id.topAnimeFragment
+            ).setOpenableLayout(drawer_layout)
+            .build()
 
         navigation_view.setupWithNavController(navController)
 
@@ -33,6 +38,20 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(
             appBarConfiguration)
         || super.onSupportNavigateUp()
+    }
+
+
+    private var doubleBackToExitPressedOnce = false
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            finish()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Please click again to exit", Toast.LENGTH_SHORT).show()
+
+        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }
 
 }

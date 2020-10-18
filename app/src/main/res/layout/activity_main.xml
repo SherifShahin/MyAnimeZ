@@ -27,6 +27,8 @@
         app:menu="@menu/drawer_menu"
         android:layout_gravity="start"
         android:id="@+id/navigation_view"
+        android:background="@color/colorPrimary"
+        app:itemTextColor="@color/white"
         />
 
 

@@ -7,6 +7,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:itemTextAppearance">@style/TextAppearance</item>
+    </style>
+
+    <style name="TextAppearance" parent="@style/Theme.AppCompat.Light">
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
     </style>
 
 </resources>

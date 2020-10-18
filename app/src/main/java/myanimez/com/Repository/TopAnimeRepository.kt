@@ -25,4 +25,8 @@ class TopAnimeRepository(val dao : AppDao , val application: Application)
             dao.getTopAnime()
         }.flow
     }
+
+    suspend fun clearData() {
+        dao.clearTopAnimes()
+    }
 }

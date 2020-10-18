@@ -1,6 +1,5 @@
 package myanimez.com.RemoteMediator
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -13,7 +12,8 @@ import retrofit2.HttpException
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
-class TopAnimeRemoteMediator(val dao : AppDao, val api : TopAnimeApi , val Subtype:String) : RemoteMediator<Int, TopAnime>()
+class TopAnimeRemoteMediator(val dao : AppDao, val api : TopAnimeApi , val Subtype:String)
+    : RemoteMediator<Int, TopAnime>()
 {
     override suspend fun load(loadType: LoadType, state: PagingState<Int, TopAnime>): MediatorResult {
 
@@ -36,16 +36,18 @@ class TopAnimeRemoteMediator(val dao : AppDao, val api : TopAnimeApi , val Subty
         }
         else if(loadType == LoadType.APPEND) {
 
-            if(dao.getPageNumber() == null)
-            {
-                loadKey = 1
-                dao.clearNumber()
-                dao.setNumber(PageNumber(1))
-                dao.clearTopAnimes()
-            }
-            else{
-                loadKey = dao.getPageNumber().number
-            }
+            try{
+                if(dao.getPageNumber() == null)
+                {
+                    loadKey = 1
+                    dao.clearNumber()
+                    dao.setNumber(PageNumber(1))
+                    dao.clearTopAnimes()
+                }
+                else{
+                    loadKey = dao.getPageNumber().number
+                }
+            } catch (e:Exception){ MediatorResult.Error(e)}
         }
 
         return try {
