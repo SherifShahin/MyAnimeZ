@@ -41,6 +41,8 @@ class TopTvAnimeFragment : Fragment() {
 
         viewModel = get()
 
+        viewModel.clearData()
+
         adapter = get()
 
         top_anime_recycleview.adapter = adapter.withLoadStateFooter(footer = ExampleLoadStateAdapter{ adapter.retry() })
@@ -69,7 +71,7 @@ class TopTvAnimeFragment : Fragment() {
 
         when(item.itemId)
         {
-            R.id.top_tv_list_view -> {
+            R.id.toolbar_list_view -> {
                 isGridView = !isGridView
 
                  if(isGridView){
@@ -96,5 +98,10 @@ class TopTvAnimeFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.clearData()
     }
 }

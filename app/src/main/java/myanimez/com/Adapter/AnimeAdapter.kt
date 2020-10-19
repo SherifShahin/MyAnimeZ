@@ -1,22 +1,19 @@
 package myanimez.com.Adapter
 
-import android.text.BoringLayout
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import myanimez.com.Model.TopAnime
+import myanimez.com.Model.Anime
 import myanimez.com.R
 
 
-class AnimeAdapter: PagingDataAdapter<TopAnime, AnimeAdapter.AnimeViewHolder>(diffCallback)
+class AnimeAdapter: PagingDataAdapter<Anime, AnimeAdapter.AnimeViewHolder>(diffCallback)
 {
     private var isGridView = true
 
@@ -39,11 +36,11 @@ class AnimeAdapter: PagingDataAdapter<TopAnime, AnimeAdapter.AnimeViewHolder>(di
     }
     companion object {
 
-        private val diffCallback = object : DiffUtil.ItemCallback<TopAnime>() {
-            override fun areItemsTheSame(oldItem: TopAnime, newItem: TopAnime): Boolean =
+        private val diffCallback = object : DiffUtil.ItemCallback<Anime>() {
+            override fun areItemsTheSame(oldItem: Anime, newItem: Anime): Boolean =
                 oldItem.title.equals(newItem.title)
 
-            override fun areContentsTheSame(oldItem: TopAnime, newItem: TopAnime): Boolean =
+            override fun areContentsTheSame(oldItem: Anime, newItem: Anime): Boolean =
                 oldItem == newItem
         }
     }
@@ -56,9 +53,9 @@ class AnimeAdapter: PagingDataAdapter<TopAnime, AnimeAdapter.AnimeViewHolder>(di
         private val imageView = itemView.findViewById<ImageView>(R.id.anime_image)
         private val rating = itemView.findViewById<TextView>(R.id.anime_rating)
 
-        var anime : TopAnime? = null
+        var anime : Anime? = null
 
-        fun bindTo(anime : TopAnime?) {
+        fun bindTo(anime : Anime?) {
             this.anime = anime
 
             nameView.text = anime?.title

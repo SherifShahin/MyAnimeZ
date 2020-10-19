@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item android:title="@string/main">
+        <menu>
+            <item
+                android:id="@+id/seasonAnimeFragment"
+                android:title="Current Season"
+                android:icon="@drawable/ic_current_season"
+                />
+        </menu>
+    </item>
 
     <item
         android:title="@string/top_anime">
@@ -7,22 +19,26 @@
             <item
                 android:id="@+id/topAnimeFragment"
                 android:title="@string/top_tv"
+                android:icon="@drawable/ic_top"
                 >
             </item>
 
             <item
                 android:id="@+id/topAiringAnimeFragment"
                 android:title="@string/top_airing"
+                android:icon="@drawable/ic_top"
                 />
 
             <item
                 android:id="@+id/topMovieAnimeFragment"
                 android:title="@string/top_movie"
+                android:icon="@drawable/ic_top"
                 />
 
             <item
                 android:id="@+id/topUpcomingAnimeFragment"
                 android:title="Top Upcoming"
+                android:icon="@drawable/ic_top"
                 />
         </menu>
     </item>

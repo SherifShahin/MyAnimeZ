@@ -6,14 +6,14 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import myanimez.com.DataBase.AppDao
-import myanimez.com.Model.TopAnime
+import myanimez.com.Model.Anime
 import myanimez.com.RemoteMediator.TopAnimeRemoteMediator
 import org.koin.android.ext.android.get
 import org.koin.core.parameter.parametersOf
 
 class TopAnimeRepository(val dao : AppDao , val application: Application)
 {
-    fun getTopAnimes(SubType : String) : Flow<PagingData<TopAnime>> {
+    fun getTopAnimes(SubType : String) : Flow<PagingData<Anime>> {
 
         return Pager(
             config = PagingConfig(pageSize = 50
@@ -22,11 +22,11 @@ class TopAnimeRepository(val dao : AppDao , val application: Application)
             ),
             remoteMediator = application.get<TopAnimeRemoteMediator>{ parametersOf(SubType)}
         ){
-            dao.getTopAnime()
+            dao.getAnime()
         }.flow
     }
 
     suspend fun clearData() {
-        dao.clearTopAnimes()
+        dao.clearAnimes()
     }
 }

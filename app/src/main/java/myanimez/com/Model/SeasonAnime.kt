@@ -4,9 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "topAnime")
-data class TopAnime (
-
+@Entity(tableName = "season_anime")
+data class SeasonAnime (
     @ColumnInfo(name = "mal_id")
     val mal_id :Int ,
 

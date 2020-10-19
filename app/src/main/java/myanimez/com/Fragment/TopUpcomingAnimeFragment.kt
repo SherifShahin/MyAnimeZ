@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_top_airing_anime.*
 import kotlinx.android.synthetic.main.fragment_top_upcoming_anime.*
 import myanimez.com.Adapter.AnimeAdapter
 import myanimez.com.Adapter.ExampleLoadStateAdapter
@@ -77,7 +76,7 @@ class TopUpcomingAnimeFragment : Fragment() {
 
         when(item.itemId)
         {
-            R.id.top_tv_list_view -> {
+            R.id.toolbar_list_view -> {
                 isGridView = !isGridView
 
                 if(isGridView){

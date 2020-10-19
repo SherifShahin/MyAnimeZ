@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/topAnimeFragment"
+    app:startDestination="@id/seasonAnimeFragment"
     >
 
     <fragment
@@ -29,5 +29,10 @@
         android:name="myanimez.com.Fragment.TopUpcomingAnimeFragment"
         android:label="fragment_top_upcoming_anime"
         tools:layout="@layout/fragment_top_upcoming_anime" />
+    <fragment
+        android:id="@+id/seasonAnimeFragment"
+        android:name="myanimez.com.Fragment.SeasonAnimeFragment"
+        android:label="season_anime_fragment"
+        tools:layout="@layout/season_anime_fragment" />
 
 </navigation>

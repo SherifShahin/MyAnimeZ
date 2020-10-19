@@ -1,15 +1,12 @@
 package myanimez.com.Fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_top_airing_anime.*
@@ -77,7 +74,7 @@ class TopAiringAnimeFragment : Fragment() {
 
         when(item.itemId)
         {
-            R.id.top_tv_list_view -> {
+            R.id.toolbar_list_view -> {
                 isGridView = !isGridView
 
                 if(isGridView){

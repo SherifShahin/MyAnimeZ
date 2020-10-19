@@ -1,11 +1,12 @@
 package myanimez.com.WebService
 
+import myanimez.com.Response.SeasonAnimeResponse
 import myanimez.com.Response.TopAnimeResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
-interface TopAnimeApi
+interface AnimeApi
 {
     @GET("top/anime/{page}/{subtype}")
     suspend fun GetTopAnime(
@@ -13,14 +14,20 @@ interface TopAnimeApi
         @Path("subtype") subtype:String
     ) : TopAnimeResponse
 
+    @GET("season/{year}/{season}")
+    suspend fun GetSeasonAnime(
+        @Path("year") year : Int ,
+        @Path("season") subtype:String
+    ) : SeasonAnimeResponse
+
     companion object  {
         private const val url = "https://api.jikan.moe/v3/"
-        operator fun invoke() : TopAnimeApi{
+        operator fun invoke() : AnimeApi{
             return  Retrofit.Builder()
                 .baseUrl("$url")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(TopAnimeApi::class.java)
+                .create(AnimeApi::class.java)
         }
     }
 }

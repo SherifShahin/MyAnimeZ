@@ -6,16 +6,16 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import myanimez.com.DataBase.AppDao
 import myanimez.com.Model.PageNumber
-import myanimez.com.Model.TopAnime
-import myanimez.com.WebService.TopAnimeApi
+import myanimez.com.Model.Anime
+import myanimez.com.WebService.AnimeApi
 import retrofit2.HttpException
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
-class TopAnimeRemoteMediator(val dao : AppDao, val api : TopAnimeApi , val Subtype:String)
-    : RemoteMediator<Int, TopAnime>()
+class TopAnimeRemoteMediator(val dao : AppDao, val api : AnimeApi, val Subtype:String)
+    : RemoteMediator<Int, Anime>()
 {
-    override suspend fun load(loadType: LoadType, state: PagingState<Int, TopAnime>): MediatorResult {
+    override suspend fun load(loadType: LoadType, state: PagingState<Int, Anime>): MediatorResult {
 
         var loadKey = 1
 
@@ -42,7 +42,7 @@ class TopAnimeRemoteMediator(val dao : AppDao, val api : TopAnimeApi , val Subty
                     loadKey = 1
                     dao.clearNumber()
                     dao.setNumber(PageNumber(1))
-                    dao.clearTopAnimes()
+                    dao.clearAnimes()
                 }
                 else{
                     loadKey = dao.getPageNumber().number
@@ -57,7 +57,7 @@ class TopAnimeRemoteMediator(val dao : AppDao, val api : TopAnimeApi , val Subty
                 if(loadType == LoadType.REFRESH)
                 {
                     try {
-                        dao.clearTopAnimes()
+                        dao.clearAnimes()
                     }
                     catch (e:Exception){
                         MediatorResult.Error(e)
@@ -67,7 +67,7 @@ class TopAnimeRemoteMediator(val dao : AppDao, val api : TopAnimeApi , val Subty
                 val currentPageNumber = dao.getPageNumber().number
                 dao.clearNumber()
                 dao.setNumber(PageNumber(currentPageNumber + 1))
-                dao.setTopAnime(response.top)
+                dao.setAnime(response.top)
 
             MediatorResult.Success(
                 endOfPaginationReached = response.top.isEmpty()

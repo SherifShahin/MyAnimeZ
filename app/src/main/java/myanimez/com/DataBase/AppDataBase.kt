@@ -1,16 +1,16 @@
 package myanimez.com.DataBase
 
 import android.content.Context
-import androidx.paging.Pager
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import myanimez.com.Model.PageNumber
-import myanimez.com.Model.TopAnime
+import myanimez.com.Model.Anime
+import myanimez.com.Model.SeasonAnime
 
 
-@Database(entities = [TopAnime::class , PageNumber::class],
-    version = 4
+@Database(entities = [Anime::class ,SeasonAnime::class ,PageNumber::class],
+    version = 5
     ,exportSchema = false)
 
 abstract class AppDataBase : RoomDatabase()

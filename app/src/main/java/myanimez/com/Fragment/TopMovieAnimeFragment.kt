@@ -74,7 +74,7 @@ class TopMovieAnimeFragment : Fragment() {
 
         when(item.itemId)
         {
-            R.id.top_tv_list_view -> {
+            R.id.toolbar_list_view -> {
                 isGridView = !isGridView
 
                 if(isGridView){
