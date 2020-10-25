@@ -6,6 +6,7 @@ import androidx.room.*
 import androidx.room.Dao
 import myanimez.com.Model.PageNumber
 import myanimez.com.Model.Anime
+import myanimez.com.Model.AnimeDetails
 import myanimez.com.Model.SeasonAnime
 
 @Dao
@@ -37,5 +38,4 @@ interface AppDao
 
     @Insert
     suspend fun setNumber(page: PageNumber)
-
 }

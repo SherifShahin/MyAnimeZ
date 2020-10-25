@@ -1,13 +1,17 @@
 package myanimez.com
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.*
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,15 +50,24 @@ class MainActivity : AppCompatActivity() {
 
     private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            finish()
-            return
+
+        val current =navController.currentDestination?.id!!
+
+        if(current  == R.id.animeDetailsFragment){
+            super.onBackPressed()
         }
 
-        this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, "Please click again to exit", Toast.LENGTH_SHORT).show()
+        else {
+            if (doubleBackToExitPressedOnce) {
+                finish()
+                return
+            }
 
-        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+            this.doubleBackToExitPressedOnce = true
+            Toast.makeText(this, "Please click again to exit", Toast.LENGTH_SHORT).show()
+
+            Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+        }
     }
 
 }

@@ -18,4 +18,8 @@ class TopAnimeViewModel(val repository: TopAnimeRepository) : ViewModel() {
         }
     }
 
+    fun getNavigate() : LiveData<Int> = repository.navigate
+    fun resetNavigation() {
+        repository.resetNavigation()
+    }
 }

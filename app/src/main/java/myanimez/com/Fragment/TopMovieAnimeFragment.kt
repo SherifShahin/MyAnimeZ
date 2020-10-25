@@ -1,13 +1,14 @@
 package myanimez.com.Fragment
 
-
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_top_movie_anime.*
@@ -48,7 +49,8 @@ class TopMovieAnimeFragment : Fragment() {
 
         adapter = get()
 
-        top_movie_anime_recycleview.adapter = adapter.withLoadStateFooter(footer = ExampleLoadStateAdapter{ adapter.retry() })
+        top_movie_anime_recycleview.adapter = adapter
+            .withLoadStateFooter(footer = ExampleLoadStateAdapter{ adapter.retry() })
 
         val layoutManager = GridLayoutManager(context, 3)
 
@@ -58,11 +60,26 @@ class TopMovieAnimeFragment : Fragment() {
             adapter.submitData(lifecycle,it)
         })
 
+        viewModel.getNavigate().observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if(it != 0) {
+                    GoToAnimeDetails(it)
+                }
+            }
+        })
+
         toolbar = (activity as AppCompatActivity?)!!.supportActionBar!!
 
         toolbar.title = "Top Movie"
 
         setHasOptionsMenu(true)
+    }
+
+    private fun GoToAnimeDetails(it: Int) {
+            val action = TopMovieAnimeFragmentDirections
+                .actionTopMovieAnimeFragmentToAnimeDetailsFragment(it)
+            findNavController().navigate(action)
+        viewModel.getNavigate().removeObservers(viewLifecycleOwner)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -103,9 +120,16 @@ class TopMovieAnimeFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onPause() {
+        super.onPause()
+        viewModel.resetNavigation()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         viewModel.clearData()
     }
+
+
 
 }

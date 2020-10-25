@@ -8,4 +8,7 @@
     <string name="top_airing">Top Airing</string>
     <string name="top_movie">Top Movie</string>
     <string name="main">Main</string>
+    <string name="genres">Genres</string>
+    <string name="characters">Characters</string>
+    <string name="recommendations">Recommendations</string>
 </resources>

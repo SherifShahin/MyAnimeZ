@@ -11,9 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import myanimez.com.Model.Anime
 import myanimez.com.R
+import myanimez.com.Repository.TopAnimeRepository
 
 
-class AnimeAdapter: PagingDataAdapter<Anime, AnimeAdapter.AnimeViewHolder>(diffCallback)
+class AnimeAdapter(val repository: TopAnimeRepository): PagingDataAdapter<Anime, AnimeAdapter.AnimeViewHolder>(diffCallback)
 {
     private var isGridView = true
 
@@ -23,9 +24,8 @@ class AnimeAdapter: PagingDataAdapter<Anime, AnimeAdapter.AnimeViewHolder>(diffC
 
     override fun onBindViewHolder(holder: AnimeViewHolder, position: Int) {
         try {
-            holder.bindTo(getItem(position))
+            holder.bindTo(getItem(position) , repository)
         } catch (e:Exception) {
-            Log.e("AnimeAdapter",e.message)
         }
 
     }
@@ -55,7 +55,10 @@ class AnimeAdapter: PagingDataAdapter<Anime, AnimeAdapter.AnimeViewHolder>(diffC
 
         var anime : Anime? = null
 
-        fun bindTo(anime : Anime?) {
+        fun bindTo(
+            anime: Anime?,
+            repository: TopAnimeRepository
+        ) {
             this.anime = anime
 
             nameView.text = anime?.title
@@ -63,6 +66,10 @@ class AnimeAdapter: PagingDataAdapter<Anime, AnimeAdapter.AnimeViewHolder>(diffC
             Glide.with(itemView).load(anime?.image_url).into(imageView)
 
             rating.text = anime?.score.toString()
+
+            itemView.setOnClickListener {
+                repository.setNavigate(anime!!.mal_id)
+            }
         }
     }
 }

@@ -1,7 +1,6 @@
 package myanimez.com.WebService
 
-import myanimez.com.Response.SeasonAnimeResponse
-import myanimez.com.Response.TopAnimeResponse
+import myanimez.com.Response.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
@@ -19,6 +18,22 @@ interface AnimeApi
         @Path("year") year : Int ,
         @Path("season") subtype:String
     ) : SeasonAnimeResponse
+
+    @GET("anime/{id}")
+    suspend fun GetAnimeDetails(
+        @Path("id") id : Int
+    ) : AnimeDetailsResponse
+
+
+    @GET("anime/{id}/characters_staff")
+    suspend fun GetAnimeCharacters(
+        @Path("id") id : Int
+    ) : AnimeCharactersResponse
+
+    @GET("anime/{id}/recommendations")
+    suspend fun GetAnimeRecommendations(
+        @Path("id") id : Int
+    ) : AnimeRecommendationsResponse
 
     companion object  {
         private const val url = "https://api.jikan.moe/v3/"

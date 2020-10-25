@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_top_upcoming_anime.*
@@ -59,12 +60,30 @@ class TopUpcomingAnimeFragment : Fragment() {
             adapter.submitData(lifecycle,it)
         })
 
+        viewModel.getNavigate().observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if(it != 0) {
+                    GoToAnimeDetails(it)
+                }
+            }
+        })
+
         toolbar = (activity as AppCompatActivity?)!!.supportActionBar!!
 
         toolbar.title = "Top Upcoming"
 
         setHasOptionsMenu(true)
 
+    }
+
+    private fun GoToAnimeDetails(it: Int) {
+
+        val action = TopUpcomingAnimeFragmentDirections
+            .actionTopUpcomingAnimeFragmentToAnimeDetailsFragment(it)
+
+        findNavController().navigate(action)
+
+        viewModel.getNavigate().removeObservers(viewLifecycleOwner)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -103,6 +122,11 @@ class TopUpcomingAnimeFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.resetNavigation()
     }
 
     override fun onDestroy() {

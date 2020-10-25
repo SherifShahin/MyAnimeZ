@@ -10,7 +10,7 @@ import myanimez.com.Model.SeasonAnime
 
 
 @Database(entities = [Anime::class ,SeasonAnime::class ,PageNumber::class],
-    version = 5
+    version = 12
     ,exportSchema = false)
 
 abstract class AppDataBase : RoomDatabase()

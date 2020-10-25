@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import myanimez.com.Model.Anime
+import myanimez.com.Fragment.SeasonAnimeFragmentDirections
 import myanimez.com.Model.SeasonAnime
 import myanimez.com.R
 
@@ -43,9 +44,13 @@ class SeasonAdapter (var list: List<SeasonAnime>)
             Glide.with(itemView).load(anime?.image_url).into(imageView)
 
             rating.text = anime?.score.toString()
+
+            itemView.setOnClickListener {
+                val action = SeasonAnimeFragmentDirections
+                    .actionSeasonAnimeFragmentToAnimeDetailsFragment(anime.mal_id)
+
+                itemView.findNavController().navigate(action)
+            }
         }
-
-
-
     }
 }

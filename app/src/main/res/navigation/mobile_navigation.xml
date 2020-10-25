@@ -12,27 +12,62 @@
         android:name="myanimez.com.Fragment.TopTvAnimeFragment"
         android:label="@string/top_anime"
         tools:layout="@layout/top_anime_fragment"
-        />
+        >
+        <action
+            android:id="@+id/action_topAnimeFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/topAiringAnimeFragment"
         android:name="myanimez.com.Fragment.TopAiringAnimeFragment"
         android:label="fragment_top_airing_anime"
         tools:layout="@layout/fragment_top_airing_anime"
-        />
+        >
+        <action
+            android:id="@+id/action_topAiringAnimeFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/topMovieAnimeFragment"
         android:name="myanimez.com.Fragment.TopMovieAnimeFragment"
         android:label="fragment_top_movie_anime"
-        tools:layout="@layout/fragment_top_movie_anime" />
+        tools:layout="@layout/fragment_top_movie_anime" >
+        <action
+            android:id="@+id/action_topMovieAnimeFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/topUpcomingAnimeFragment"
         android:name="myanimez.com.Fragment.TopUpcomingAnimeFragment"
         android:label="fragment_top_upcoming_anime"
-        tools:layout="@layout/fragment_top_upcoming_anime" />
+        tools:layout="@layout/fragment_top_upcoming_anime" >
+        <action
+            android:id="@+id/action_topUpcomingAnimeFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/seasonAnimeFragment"
         android:name="myanimez.com.Fragment.SeasonAnimeFragment"
         android:label="season_anime_fragment"
-        tools:layout="@layout/season_anime_fragment" />
+        tools:layout="@layout/season_anime_fragment" >
+        <action
+            android:id="@+id/action_seasonAnimeFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/animeDetailsFragment"
+        android:name="myanimez.com.Fragment.AnimeDetailsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_anime_details" >
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/openDetails"
+            app:destination="@id/animeDetailsFragment" />
+
+    </fragment>
 
 </navigation>
