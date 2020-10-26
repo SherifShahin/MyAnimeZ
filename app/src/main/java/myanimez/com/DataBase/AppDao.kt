@@ -6,7 +6,7 @@ import androidx.room.*
 import androidx.room.Dao
 import myanimez.com.Model.PageNumber
 import myanimez.com.Model.Anime
-import myanimez.com.Model.AnimeDetails
+import myanimez.com.Model.FavouriteAnime
 import myanimez.com.Model.SeasonAnime
 
 @Dao
@@ -38,4 +38,16 @@ interface AppDao
 
     @Insert
     suspend fun setNumber(page: PageNumber)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun setFavouriteAnime(favouriteAnime : FavouriteAnime)
+
+    @Query("SELECT * FROM favourite")
+    fun getFavouriteAnime() : LiveData<List<FavouriteAnime>>
+
+    @Query("SELECT EXISTS(SELECT * from favourite WHERE mal_id =:id)")
+    fun checkExistInFavourite(id : Int) : LiveData<Int>
+
+    @Query("DELETE FROM FAVOURITE WHERE mal_id = :id")
+    suspend fun DeleteFromFavourite(id : Int)
 }

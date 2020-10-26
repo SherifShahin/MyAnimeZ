@@ -2,9 +2,14 @@ package myanimez.com.Repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import myanimez.com.DataBase.AppDao
 import myanimez.com.Model.AnimeCharacter
 import myanimez.com.Model.AnimeDetails
 import myanimez.com.Model.AnimeRecommendation
+import myanimez.com.Model.FavouriteAnime
 import myanimez.com.Response.AnimeCharactersResponse
 import myanimez.com.Response.AnimeDetailsResponse
 import myanimez.com.Response.AnimeRecommendationsResponse
@@ -12,7 +17,7 @@ import myanimez.com.WebService.AnimeApi
 import retrofit2.HttpException
 import java.io.IOException
 
-class AnimeDetailsRepository(val api : AnimeApi)
+class AnimeDetailsRepository(val dao : AppDao ,val api : AnimeApi)
 {
     private val _AnimeDetails : MutableLiveData<AnimeDetails> = MutableLiveData()
     val AnimedDeatils : LiveData<AnimeDetails> = _AnimeDetails
@@ -26,6 +31,8 @@ class AnimeDetailsRepository(val api : AnimeApi)
     private val _RequestResult: MutableLiveData<String> = MutableLiveData()
 
     val RequestResult : LiveData<String> = _RequestResult
+
+
 
     suspend fun getAnimeDetails(id : Int)
     {
@@ -78,5 +85,24 @@ class AnimeDetailsRepository(val api : AnimeApi)
 
         _AnimeDetails.value = anime
     }
+
+    suspend fun addToFavourite(anime: AnimeDetails) {
+
+        val favourite = FavouriteAnime(
+            mal_id = anime.mal_id,
+            title = anime.title,
+            image_url = anime.image_url ,
+            score = anime.score?.toFloat()
+        )
+
+        dao.setFavouriteAnime(favourite)
+    }
+
+    fun InFavourite(id : Int):LiveData<Int> =  dao.checkExistInFavourite(id)
+
+    suspend fun deleteFromFavourite(malId: Int?) {
+        dao.DeleteFromFavourite(malId!!)
+    }
+
 
 }

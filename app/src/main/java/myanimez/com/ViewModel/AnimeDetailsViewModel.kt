@@ -26,4 +26,20 @@ class AnimeDetailsViewModel(val repository: AnimeDetailsRepository) :ViewModel()
              }
          }
     }
+
+    fun addToFavourite(anime: AnimeDetails) {
+        viewModelScope.launch {
+            repository.addToFavourite(anime)
+        }
+    }
+
+     fun InFavourite(id : Int) : LiveData<Int> {
+           return repository.InFavourite(id)
+    }
+
+    fun deleteFromFavourite(malId: Int?) {
+        viewModelScope.launch {
+            repository.deleteFromFavourite(malId)
+        }
+    }
 }

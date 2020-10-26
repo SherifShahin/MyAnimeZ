@@ -11,4 +11,5 @@
     <string name="genres">Genres</string>
     <string name="characters">Characters</string>
     <string name="recommendations">Recommendations</string>
+    <string name="sorry_no_data">Sorry, No Data</string>
 </resources>

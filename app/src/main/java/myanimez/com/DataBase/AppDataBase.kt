@@ -6,11 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import myanimez.com.Model.PageNumber
 import myanimez.com.Model.Anime
+import myanimez.com.Model.FavouriteAnime
 import myanimez.com.Model.SeasonAnime
 
 
-@Database(entities = [Anime::class ,SeasonAnime::class ,PageNumber::class],
-    version = 12
+@Database(entities = [Anime::class ,SeasonAnime::class
+    ,PageNumber::class , FavouriteAnime::class],
+    version = 16
     ,exportSchema = false)
 
 abstract class AppDataBase : RoomDatabase()

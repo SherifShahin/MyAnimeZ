@@ -69,5 +69,14 @@
             app:destination="@id/animeDetailsFragment" />
 
     </fragment>
+    <fragment
+        android:id="@+id/favouriteAnimeFragment"
+        android:name="myanimez.com.Fragment.FavouriteAnimeFragment"
+        android:label="favourite_anime_fragment"
+        tools:layout="@layout/favourite_anime_fragment" >
+        <action
+            android:id="@+id/action_favouriteAnimeFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
 
 </navigation>

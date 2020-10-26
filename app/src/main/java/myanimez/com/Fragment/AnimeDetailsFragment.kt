@@ -1,6 +1,5 @@
 package myanimez.com.Fragment
 
-
 import android.os.Bundle
 
 import androidx.fragment.app.Fragment
@@ -31,6 +30,10 @@ class AnimeDetailsFragment : Fragment() {
 
     private lateinit var toolbar : ActionBar
 
+    private lateinit var CurrentAnime : AnimeDetails
+
+    private var Favourite : Boolean = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,6 +60,7 @@ class AnimeDetailsFragment : Fragment() {
                 anime_details_progressbar.visibility = View.GONE
                 anime_details_layout.visibility = View.VISIBLE
                 setDataIntoUI(it)
+                CurrentAnime = it
             }
         })
 
@@ -80,10 +84,31 @@ class AnimeDetailsFragment : Fragment() {
             }
         })
 
+        viewModel.InFavourite(id).observe(viewLifecycleOwner , Observer {
+            if(it == 1){
+                Favourite = true
+                anime_details_favourite_icon.setImageResource(R.drawable.ic_favourite)
+            } else if(it == 0) {
+                Favourite = false
+                anime_details_favourite_icon.setImageResource(R.drawable.ic_favourite_border)
+            }
+
+        })
+
         anime_details_reload.setOnClickListener {
             anime_details_error_layout.visibility = View.GONE
             anime_details_progressbar.visibility = View.VISIBLE
             viewModel.RequestAnimeDetails(id)
+        }
+
+        anime_details_favourite.setOnClickListener {
+
+            if(!Favourite) {
+                viewModel.addToFavourite(CurrentAnime)
+            } else {
+                viewModel.deleteFromFavourite(CurrentAnime.mal_id)
+            }
+            Favourite = !Favourite
         }
 
     }

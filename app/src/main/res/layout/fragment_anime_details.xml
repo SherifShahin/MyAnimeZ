@@ -170,6 +170,7 @@
                  android:orientation="vertical"
                  android:layout_weight="1"
                  android:layout_gravity="center"
+                 android:id="@+id/anime_details_favourite"
                  >
 
                  <ImageView
@@ -177,6 +178,7 @@
                      android:layout_height="40dp"
                      android:src="@drawable/ic_favourite_border"
                      android:layout_gravity="center"
+                     android:id="@+id/anime_details_favourite_icon"
                      />
 
                  <TextView
