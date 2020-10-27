@@ -35,6 +35,12 @@ interface AnimeApi
         @Path("id") id : Int
     ) : AnimeRecommendationsResponse
 
+    @GET("search/anime")
+    suspend fun SearchAnime(
+        @Query("q") search : String ,
+        @Query("page") page : Int
+    ) : SearchResponse
+
     companion object  {
         private const val url = "https://api.jikan.moe/v3/"
         operator fun invoke() : AnimeApi{

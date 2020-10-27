@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.paging.PagingSource
 import androidx.room.*
 import androidx.room.Dao
-import myanimez.com.Model.PageNumber
-import myanimez.com.Model.Anime
-import myanimez.com.Model.FavouriteAnime
-import myanimez.com.Model.SeasonAnime
+import myanimez.com.Model.*
 
 @Dao
 interface AppDao
@@ -50,4 +47,14 @@ interface AppDao
 
     @Query("DELETE FROM FAVOURITE WHERE mal_id = :id")
     suspend fun DeleteFromFavourite(id : Int)
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun setSearchResult(searchResult: List<SearchResult>)
+
+    @Query("SELECT * FROM search")
+    fun getSearchResult() : LiveData<List<SearchResult>>
+
+    @Query("DELETE FROM SEARCH")
+    suspend fun DeleteSearchResult()
 }

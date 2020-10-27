@@ -1,12 +1,13 @@
 package myanimez.com.Fragment
 
-import android.opengl.Visibility
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.season_anime_fragment.*
@@ -32,19 +33,24 @@ class SeasonAnimeFragment : Fragment() {
         return inflater.inflate(R.layout.season_anime_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         viewModel = get()
 
         viewModel.RequestNewData()
+    }
+
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         viewModel.getSeasonAnime().observe(viewLifecycleOwner , Observer {
-            if(!it.isEmpty()) {
+            if(it.isNotEmpty()) {
                 LayoutView(View.GONE)
                 ProgressView(View.GONE)
                 season_anime_recycleview.visibility = View.VISIBLE
-                adapter = get() { parametersOf(it) }
+                adapter = get { parametersOf(it) }
                 season_anime_recycleview.adapter = adapter
                 season_anime_recycleview.layoutManager = GridLayoutManager(context, 3)
             }
@@ -95,6 +101,9 @@ class SeasonAnimeFragment : Fragment() {
                 season_anime_recycleview.adapter = adapter
                 true
             }
+            R.id.toolbar_search_view ->{
+                GoToSearchView()
+            }
 
             else -> false
 
@@ -117,6 +126,13 @@ class SeasonAnimeFragment : Fragment() {
         ProgressView(View.GONE)
         LayoutView(View.VISIBLE)
         season_anime_recycleview.visibility = View.GONE
+    }
+
+    private fun GoToSearchView(){
+
+        val action = SeasonAnimeFragmentDirections.actionSeasonAnimeFragmentToSearchFragment()
+
+        findNavController().navigate(action)
     }
 
 }

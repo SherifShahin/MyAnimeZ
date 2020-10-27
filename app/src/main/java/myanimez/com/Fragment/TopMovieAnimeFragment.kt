@@ -111,6 +111,9 @@ class TopMovieAnimeFragment : Fragment() {
 
                 true
             }
+            R.id.toolbar_search_view ->{
+               GoToSearchView()
+            }
 
             else -> {
                 false
@@ -118,6 +121,12 @@ class TopMovieAnimeFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun GoToSearchView() {
+        val action = TopMovieAnimeFragmentDirections
+            .actionTopMovieAnimeFragmentToSearchFragment()
+        findNavController().navigate(action)
     }
 
     override fun onPause() {

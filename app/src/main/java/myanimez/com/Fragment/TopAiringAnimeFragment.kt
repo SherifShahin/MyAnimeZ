@@ -113,6 +113,9 @@ class TopAiringAnimeFragment : Fragment() {
 
                 true
             }
+            R.id.toolbar_search_view ->{
+                GoToSearchView()
+            }
 
             else -> {
                 false
@@ -120,6 +123,12 @@ class TopAiringAnimeFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun GoToSearchView() {
+        val action = TopAiringAnimeFragmentDirections
+            .actionTopAiringAnimeFragmentToSearchFragment()
+        findNavController().navigate(action)
     }
 
     override fun onPause() {

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.SearchFragment"
     android:background="@color/colorPrimary"
-    tools:context=".Fragment.SeasonAnimeFragment"
     >
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/season_anime_recycleview"
+        android:id="@+id/search_recycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
@@ -17,7 +18,7 @@
         />
 
     <LinearLayout
-        android:id="@+id/season_anime_error_layout"
+        android:id="@+id/search_error_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,31 +41,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="Sorry Try Again Later"
+            android:text="No Result"
             android:textColor="@color/white"
             android:gravity="center"
             android:layout_gravity="center"
             />
 
-        <Button
-            android:id="@+id/season_anime_reload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@color/white"
-            android:text="Reload"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            />
-
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/season_anime_progressbar"
+        android:id="@+id/search_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

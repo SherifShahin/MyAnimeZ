@@ -2,19 +2,10 @@ package myanimez.com
 
 import myanimez.com.Adapter.*
 import myanimez.com.DataBase.AppDataBase
-import myanimez.com.Model.AnimeCharacter
-import myanimez.com.Model.AnimeRecommendation
-import myanimez.com.Model.FavouriteAnime
-import myanimez.com.Model.SeasonAnime
+import myanimez.com.Model.*
 import myanimez.com.RemoteMediator.TopAnimeRemoteMediator
-import myanimez.com.Repository.AnimeDetailsRepository
-import myanimez.com.Repository.FavouriteAnimeRepository
-import myanimez.com.Repository.SeasonAnimeRepository
-import myanimez.com.Repository.TopAnimeRepository
-import myanimez.com.ViewModel.AnimeDetailsViewModel
-import myanimez.com.ViewModel.FavouriteAnimeViewModel
-import myanimez.com.ViewModel.SeasonAnimeViewModel
-import myanimez.com.ViewModel.TopAnimeViewModel
+import myanimez.com.Repository.*
+import myanimez.com.ViewModel.*
 import myanimez.com.WebService.AnimeApi
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -34,7 +25,7 @@ val appModules = module {
 
     factory { AnimeAdapter(get()) }
 
-    factory { SeasonAnimeRepository(get(),get()) }
+    single { SeasonAnimeRepository(get(),get()) }
 
     viewModel { SeasonAnimeViewModel(get()) }
 
@@ -53,4 +44,10 @@ val appModules = module {
     viewModel { FavouriteAnimeViewModel(get()) }
 
     factory { (list : List<FavouriteAnime>) -> FavouriteAdapter(list) }
+
+    single{ SearchRepository(get() ,get()) }
+
+    viewModel { SearchViewModel(get()) }
+
+    factory { (list : List<SearchResult>) -> SearchAdapter(list) }
 }

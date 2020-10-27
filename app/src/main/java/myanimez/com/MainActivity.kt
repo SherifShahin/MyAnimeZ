@@ -1,5 +1,6 @@
 package myanimez.com
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         navigation_view.setupWithNavController(navController)
 
         setupActionBarWithNavController(navController,appBarConfiguration)
+
+        setAppLocale("EN")
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -54,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         val current =navController.currentDestination?.id!!
 
-        if(current  == R.id.animeDetailsFragment){
+        if(current  == R.id.animeDetailsFragment || current == R.id.searchFragment){
             super.onBackPressed()
         }
 
@@ -69,6 +73,22 @@ class MainActivity : AppCompatActivity() {
 
             Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
         }
+    }
+
+    private fun setAppLocale(localeCode: String)
+    {
+        val resources = resources
+        val dm = resources.displayMetrics
+        val config = resources.configuration
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+        {
+            config.setLocale(Locale(localeCode.toLowerCase()))
+        }
+        else
+        {
+            config.locale = Locale(localeCode.toLowerCase())
+        }
+        resources.updateConfiguration(config, dm)
     }
 
 }

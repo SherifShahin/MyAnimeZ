@@ -37,12 +37,16 @@ class TopTvAnimeFragment : Fragment() {
         return inflater.inflate(R.layout.top_anime_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         viewModel = get()
 
         viewModel.clearData()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         adapter = get()
 
@@ -111,6 +115,9 @@ class TopTvAnimeFragment : Fragment() {
 
                 true
             }
+            R.id.toolbar_search_view ->{
+                GoToSearchView()
+            }
 
             else -> {
                 false
@@ -118,6 +125,12 @@ class TopTvAnimeFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun GoToSearchView() {
+        val action = TopTvAnimeFragmentDirections
+            .actionTopAnimeFragmentToSearchFragment()
+        findNavController().navigate(action)
     }
 
     override fun onPause() {

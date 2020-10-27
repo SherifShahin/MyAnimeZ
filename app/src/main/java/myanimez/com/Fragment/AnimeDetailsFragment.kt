@@ -42,6 +42,7 @@ class AnimeDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_anime_details, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

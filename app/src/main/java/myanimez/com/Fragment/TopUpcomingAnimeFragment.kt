@@ -115,6 +115,9 @@ class TopUpcomingAnimeFragment : Fragment() {
 
                 true
             }
+            R.id.toolbar_search_view ->{
+                GoToSearchView()
+            }
 
             else -> {
                 false
@@ -122,6 +125,12 @@ class TopUpcomingAnimeFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun GoToSearchView() {
+        val action = TopUpcomingAnimeFragmentDirections
+            .actionTopUpcomingAnimeFragmentToSearchFragment()
+        findNavController().navigate(action)
     }
 
     override fun onPause() {

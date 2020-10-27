@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.favourite_anime_fragment.*
@@ -31,9 +32,14 @@ class FavouriteAnimeFragment : Fragment() {
         return inflater.inflate(R.layout.favourite_anime_fragment, container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = get()
+    }
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = get()
 
         viewModel.getFavouriteAnime().observe(viewLifecycleOwner , Observer {
 
@@ -92,12 +98,21 @@ class FavouriteAnimeFragment : Fragment() {
                 favourite_anime_recyclerview.adapter = adapter
                 true
             }
+            R.id.toolbar_search_view ->{
+                GoToSearchView()
+            }
 
             else -> false
 
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun GoToSearchView() {
+        val action = FavouriteAnimeFragmentDirections
+            .actionFavouriteAnimeFragmentToSearchFragment()
+        findNavController().navigate(action)
     }
 
 }
