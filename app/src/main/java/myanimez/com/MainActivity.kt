@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration
             .Builder(
                 R.id.seasonAnimeFragment,
+                R.id.scheduleFragment,
                 R.id.favouriteAnimeFragment,
                 R.id.topAiringAnimeFragment,
                 R.id.topAnimeFragment ,

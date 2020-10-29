@@ -29,6 +29,7 @@
         android:background="@color/colorPrimary"
         app:itemTextColor="@color/white"
         app:itemIconTint="@color/white"
+        android:theme="@style/AppTheme.NavigationView"
         />
 
 </androidx.drawerlayout.widget.DrawerLayout>

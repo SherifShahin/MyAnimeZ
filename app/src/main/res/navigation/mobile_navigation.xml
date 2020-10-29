@@ -97,5 +97,16 @@
             android:id="@+id/action_searchFragment_to_animeDetailsFragment"
             app:destination="@id/animeDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="myanimez.com.Fragment.ScheduleFragment"
+        tools:layout="@layout/fragment_schedule" >
+        <action
+            android:id="@+id/action_scheduleFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_scheduleFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
 
 </navigation>

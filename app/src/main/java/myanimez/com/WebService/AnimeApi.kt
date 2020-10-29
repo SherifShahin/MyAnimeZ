@@ -41,6 +41,9 @@ interface AnimeApi
         @Query("page") page : Int
     ) : SearchResponse
 
+    @GET("schedule")
+    suspend fun GetSchedule():ScheduleResponse
+
     companion object  {
         private const val url = "https://api.jikan.moe/v3/"
         operator fun invoke() : AnimeApi{

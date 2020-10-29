@@ -69,17 +69,17 @@ class AnimeDetailsRepository(val dao : AppDao ,val api : AnimeApi)
         val anime = AnimeDetails(
                 mal_id = response.mal_id!!,
                 image_url = response.image_url!! ,
-                source = response.source ?: "null",
+                source = response.source ?: "UNKNOWN",
                 scored_by = response.scored_by ?: 0,
                 score = response.score ?: 0.0,
-                premiered = response.premiered ?: "null",
-                status = response.status ?: "null",
+                premiered = response.premiered ?: "UNKNOWN",
+                status = response.status ?: "UNKNOWN",
                 title = response.title!!,
-                aired = response.aired?.string ?: "null",
-                synopsis = response.synopsis ?: "null",
+                aired = response.aired?.string ?: "UNKNOWN",
+                synopsis = response.synopsis ?: "UNKNOWN",
                 episodes = response.episodes ?: 0,
-                type = response.type ?: "null",
-                duration = response.duration ?: "null",
+                type = response.type ?: "",
+                duration = response.duration ?: "UNKNOWN",
                 genres = response.genres
             )
 

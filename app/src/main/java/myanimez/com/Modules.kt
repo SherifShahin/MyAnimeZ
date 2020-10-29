@@ -5,6 +5,7 @@ import myanimez.com.DataBase.AppDataBase
 import myanimez.com.Model.*
 import myanimez.com.RemoteMediator.TopAnimeRemoteMediator
 import myanimez.com.Repository.*
+import myanimez.com.Response.ScheduleResponse
 import myanimez.com.ViewModel.*
 import myanimez.com.WebService.AnimeApi
 import org.koin.android.ext.koin.androidApplication
@@ -50,4 +51,10 @@ val appModules = module {
     viewModel { SearchViewModel(get()) }
 
     factory { (list : List<SearchResult>) -> SearchAdapter(list) }
+
+    single{ ScheduleRepository(get()) }
+
+    viewModel { ScheduleViewModel(get()) }
+
+    factory { (items : ScheduleResponse) -> ScheduleAdapter(items) }
 }
