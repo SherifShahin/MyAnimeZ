@@ -12,4 +12,6 @@
     <string name="characters">Characters</string>
     <string name="recommendations">Recommendations</string>
     <string name="sorry_no_data">Sorry, No Data</string>
+    <string name="top">Top</string>
+    <string name="top_manga">Top Manga</string>
 </resources>

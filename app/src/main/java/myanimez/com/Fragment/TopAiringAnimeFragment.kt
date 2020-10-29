@@ -11,23 +11,25 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_top_airing_anime.*
-import myanimez.com.Adapter.AnimeAdapter
+import myanimez.com.Adapter.TopAdapter
 import myanimez.com.Adapter.ExampleLoadStateAdapter
 
 import myanimez.com.R
-import myanimez.com.ViewModel.TopAnimeViewModel
+import myanimez.com.ViewModel.TopViewModel
 import org.koin.android.ext.android.get
 
 
 class TopAiringAnimeFragment : Fragment() {
 
-    private lateinit var viewModel: TopAnimeViewModel
+    private lateinit var viewModel: TopViewModel
 
     private lateinit var toolbar: ActionBar
 
     private var TopType = "airing"
 
-    private lateinit var adapter: AnimeAdapter
+    private var Type = "anime"
+
+    private lateinit var adapter: TopAdapter
 
     private var isGridView : Boolean = true
 
@@ -54,7 +56,7 @@ class TopAiringAnimeFragment : Fragment() {
 
         top_airing_anime_recycleview.layoutManager = layoutManager
 
-        viewModel.getTopAnimes(TopType).observe(viewLifecycleOwner , Observer {
+        viewModel.getTopAnimes(Type,TopType).observe(viewLifecycleOwner , Observer {
             adapter.submitData(lifecycle,it)
         })
 
@@ -85,7 +87,7 @@ class TopAiringAnimeFragment : Fragment() {
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.top_anime, menu)
+        inflater.inflate(R.menu.main_menu, menu)
         super.onCreateOptionsMenu(menu,inflater)
     }
 

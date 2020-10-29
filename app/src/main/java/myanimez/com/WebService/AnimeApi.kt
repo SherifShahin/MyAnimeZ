@@ -7,8 +7,9 @@ import retrofit2.http.*
 
 interface AnimeApi
 {
-    @GET("top/anime/{page}/{subtype}")
-    suspend fun GetTopAnime(
+    @GET("top/{type}/{page}/{subtype}")
+    suspend fun GetTop(
+        @Path("type") type : String,
         @Path("page") page : Int ,
         @Path("subtype") subtype:String
     ) : TopAnimeResponse

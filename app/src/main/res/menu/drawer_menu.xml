@@ -25,7 +25,7 @@
     </item>
 
     <item
-        android:title="@string/top_anime">
+        android:title="@string/top">
         <menu>
             <item
                 android:id="@+id/topAnimeFragment"
@@ -49,6 +49,12 @@
             <item
                 android:id="@+id/topUpcomingAnimeFragment"
                 android:title="Top Upcoming"
+                android:icon="@drawable/ic_top"
+                />
+
+            <item
+                android:id="@+id/topMangaFragment"
+                android:title="@string/top_manga"
                 android:icon="@drawable/ic_top"
                 />
         </menu>

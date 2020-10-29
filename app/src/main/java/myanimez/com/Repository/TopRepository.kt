@@ -13,19 +13,19 @@ import myanimez.com.RemoteMediator.TopAnimeRemoteMediator
 import org.koin.android.ext.android.get
 import org.koin.core.parameter.parametersOf
 
-class TopAnimeRepository(val dao : AppDao , val application: Application)
+class TopRepository(val dao : AppDao, val application: Application)
 {
     private val _navigate : MutableLiveData<Int> = MutableLiveData()
     val navigate : LiveData<Int>  = _navigate
 
-    fun getTopAnimes(SubType : String) : Flow<PagingData<Anime>> {
+    fun getTopAnimes(Type: String ,SubType : String) : Flow<PagingData<Anime>> {
 
         return Pager(
             config = PagingConfig(pageSize = 50
                  , maxSize = 200
                 ,  enablePlaceholders = false
             ),
-            remoteMediator = application.get<TopAnimeRemoteMediator>{ parametersOf(SubType)}
+            remoteMediator = application.get<TopAnimeRemoteMediator>{ parametersOf(Type,SubType)}
         ){
             dao.getAnime()
         }.flow

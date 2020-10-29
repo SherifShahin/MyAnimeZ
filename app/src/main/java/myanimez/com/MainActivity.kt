@@ -35,7 +35,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.topAiringAnimeFragment,
                 R.id.topAnimeFragment ,
                 R.id.topMovieAnimeFragment,
-                R.id.topUpcomingAnimeFragment
+                R.id.topUpcomingAnimeFragment,
+                R.id.topMangaFragment
             ).setOpenableLayout(drawer_layout)
             .build()
 

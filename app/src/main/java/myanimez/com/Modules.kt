@@ -18,13 +18,13 @@ val appModules = module {
 
     single { AnimeApi.invoke() }
 
-    factory { (subtype : String) -> TopAnimeRemoteMediator(get() , get() ,subtype)}
+    factory { (type:String ,subtype : String) -> TopAnimeRemoteMediator(get() , get() ,type,subtype)}
 
-    single { TopAnimeRepository(get(),androidApplication())}
+    single { TopRepository(get(),androidApplication())}
 
-    viewModel { TopAnimeViewModel(get()) }
+    viewModel { TopViewModel(get()) }
 
-    factory { AnimeAdapter(get()) }
+    factory { TopAdapter(get()) }
 
     single { SeasonAnimeRepository(get(),get()) }
 

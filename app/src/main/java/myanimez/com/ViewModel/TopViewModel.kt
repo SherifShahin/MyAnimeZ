@@ -7,11 +7,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import kotlinx.coroutines.launch
 import myanimez.com.Model.Anime
-import myanimez.com.Repository.TopAnimeRepository
+import myanimez.com.Repository.TopRepository
 
-class TopAnimeViewModel(val repository: TopAnimeRepository) : ViewModel() {
+class TopViewModel(val repository: TopRepository) : ViewModel() {
 
-    fun getTopAnimes(substype:String): LiveData<PagingData<Anime>> = repository.getTopAnimes(substype).asLiveData()
+    fun getTopAnimes(Type:String,substype:String): LiveData<PagingData<Anime>> = repository.getTopAnimes(Type,substype).asLiveData()
     fun clearData() {
         viewModelScope.launch {
             repository.clearData()

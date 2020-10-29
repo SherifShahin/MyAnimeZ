@@ -1,7 +1,6 @@
 package myanimez.com.Fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.ActionBar
@@ -12,23 +11,25 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_top_movie_anime.*
-import myanimez.com.Adapter.AnimeAdapter
+import myanimez.com.Adapter.TopAdapter
 import myanimez.com.Adapter.ExampleLoadStateAdapter
 
 import myanimez.com.R
-import myanimez.com.ViewModel.TopAnimeViewModel
+import myanimez.com.ViewModel.TopViewModel
 import org.koin.android.ext.android.get
 
 
 class TopMovieAnimeFragment : Fragment() {
 
-    private lateinit var viewModel: TopAnimeViewModel
+    private lateinit var viewModel: TopViewModel
 
     private lateinit var toolbar: ActionBar
 
     private var TopType = "movie"
 
-    private lateinit var adapter: AnimeAdapter
+    private var Type = "anime"
+
+    private lateinit var adapter: TopAdapter
 
     private var isGridView : Boolean = true
 
@@ -56,7 +57,7 @@ class TopMovieAnimeFragment : Fragment() {
 
         top_movie_anime_recycleview.layoutManager = layoutManager
 
-        viewModel.getTopAnimes(TopType).observe(viewLifecycleOwner , Observer {
+        viewModel.getTopAnimes(Type,TopType).observe(viewLifecycleOwner , Observer {
             adapter.submitData(lifecycle,it)
         })
 
@@ -83,7 +84,7 @@ class TopMovieAnimeFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.top_anime, menu)
+        inflater.inflate(R.menu.main_menu, menu)
         super.onCreateOptionsMenu(menu,inflater)
     }
 

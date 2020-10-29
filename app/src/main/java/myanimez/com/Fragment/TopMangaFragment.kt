@@ -2,31 +2,31 @@ package myanimez.com.Fragment
 
 import android.os.Bundle
 import android.view.*
+import androidx.fragment.app.Fragment
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.top_anime_fragment.*
+import kotlinx.android.synthetic.main.top_manga_fragment.*
 import myanimez.com.Adapter.TopAdapter
 import myanimez.com.Adapter.ExampleLoadStateAdapter
+
 import myanimez.com.R
 import myanimez.com.ViewModel.TopViewModel
 import org.koin.android.ext.android.get
 
-
-class TopTvAnimeFragment : Fragment() {
+class TopMangaFragment : Fragment() {
 
     private lateinit var viewModel: TopViewModel
 
     private lateinit var toolbar: ActionBar
 
-    private var TopType = "tv"
+    private var TopType = "manga"
 
-    private var Type = "anime"
+    private var Type = "manga"
 
     private lateinit var adapter: TopAdapter
 
@@ -36,57 +36,53 @@ class TopTvAnimeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.top_anime_fragment, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.top_manga_fragment, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         viewModel = get()
 
         viewModel.clearData()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
 
         adapter = get()
 
-        top_anime_recycleview.adapter = adapter.withLoadStateFooter(footer = ExampleLoadStateAdapter{ adapter.retry() })
+
+        top_manga_recyclerview.adapter = adapter
+            .withLoadStateFooter(footer = ExampleLoadStateAdapter{ adapter.retry() })
 
         val layoutManager = GridLayoutManager(context, 3)
 
-        top_anime_recycleview.layoutManager = layoutManager
+        top_manga_recyclerview.layoutManager = layoutManager
 
         viewModel.getTopAnimes(Type,TopType).observe(viewLifecycleOwner , Observer {
             adapter.submitData(lifecycle,it)
         })
 
-        viewModel.getNavigate().observe(viewLifecycleOwner, Observer {
-            it?.let {
-                if(it != 0) {
-                    GoToAnimeDetails(it)
-                }
-            }
-        })
-
+//        viewModel.getNavigate().observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                if(it != 0) {
+//                  //  GoToAnimeDetails(it)
+//                }
+//            }
+//        })
 
         toolbar = (activity as AppCompatActivity?)!!.supportActionBar!!
 
-        toolbar.title = "Top TV"
+        toolbar.title = "Top Manga"
 
         setHasOptionsMenu(true)
     }
 
-    private fun GoToAnimeDetails(it: Int) {
-
-        val action = TopTvAnimeFragmentDirections
-            .actionTopAnimeFragmentToAnimeDetailsFragment(it)
-
-        findNavController().navigate(action)
-
-        viewModel.getNavigate().removeObservers(viewLifecycleOwner)
-    }
+    // in Update
+//    private fun GoToAnimeDetails(it: Int) {
+//        val action = TopMovieAnimeFragmentDirections
+//            .actionTopMovieAnimeFragmentToAnimeDetailsFragment(it)
+//        findNavController().navigate(action)
+//        viewModel.getNavigate().removeObservers(viewLifecycleOwner)
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu, menu)
@@ -100,19 +96,19 @@ class TopTvAnimeFragment : Fragment() {
             R.id.toolbar_list_view -> {
                 isGridView = !isGridView
 
-                 if(isGridView){
-                     top_anime_recycleview.layoutManager = GridLayoutManager(context, 3)
-                     item.icon = ContextCompat.getDrawable(context!!, R.drawable.ic_list)
-                 }
+                if(isGridView){
+                    top_manga_recyclerview.layoutManager = GridLayoutManager(context, 3)
+                    item.icon = ContextCompat.getDrawable(context!!, R.drawable.ic_list)
+                }
                 else{
-                     top_anime_recycleview.layoutManager =
-                         LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false)
-                     item.icon = ContextCompat.getDrawable(context!!, R.drawable.ic_grid)
-                 }
+                    top_manga_recyclerview.layoutManager =
+                        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                    item.icon = ContextCompat.getDrawable(context!!, R.drawable.ic_grid)
+                }
 
                 adapter.isGridView(isGridView)
 
-                top_anime_recycleview.adapter =
+                top_manga_recyclerview.adapter =
                     adapter.withLoadStateFooter(footer = ExampleLoadStateAdapter{ adapter.retry()})
 
                 true
@@ -130,8 +126,8 @@ class TopTvAnimeFragment : Fragment() {
     }
 
     private fun GoToSearchView() {
-        val action = TopTvAnimeFragmentDirections
-            .actionTopAnimeFragmentToSearchFragment()
+        val action = TopMangaFragmentDirections
+            .actionTopMangaToSearchFragment()
         findNavController().navigate(action)
     }
 
@@ -144,4 +140,8 @@ class TopTvAnimeFragment : Fragment() {
         super.onDestroy()
         viewModel.clearData()
     }
+
+
+
+
 }

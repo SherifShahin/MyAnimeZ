@@ -1,6 +1,5 @@
 package myanimez.com.Adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -11,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import myanimez.com.Model.Anime
 import myanimez.com.R
-import myanimez.com.Repository.TopAnimeRepository
+import myanimez.com.Repository.TopRepository
 
 
-class AnimeAdapter(val repository: TopAnimeRepository): PagingDataAdapter<Anime, AnimeAdapter.AnimeViewHolder>(diffCallback)
+class TopAdapter(val repository: TopRepository): PagingDataAdapter<Anime, TopAdapter.AnimeViewHolder>(diffCallback)
 {
     private var isGridView = true
 
@@ -57,7 +56,7 @@ class AnimeAdapter(val repository: TopAnimeRepository): PagingDataAdapter<Anime,
 
         fun bindTo(
             anime: Anime?,
-            repository: TopAnimeRepository
+            repository: TopRepository
         ) {
             this.anime = anime
 

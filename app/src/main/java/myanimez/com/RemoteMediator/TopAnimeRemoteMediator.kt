@@ -12,7 +12,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
-class TopAnimeRemoteMediator(val dao : AppDao, val api : AnimeApi, val Subtype:String)
+class TopAnimeRemoteMediator(val dao : AppDao, val api : AnimeApi,val Type:String ,val Subtype:String)
     : RemoteMediator<Int, Anime>()
 {
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Anime>): MediatorResult {
@@ -52,7 +52,7 @@ class TopAnimeRemoteMediator(val dao : AppDao, val api : AnimeApi, val Subtype:S
 
         return try {
 
-                val response = api.GetTopAnime(loadKey,Subtype)
+                val response = api.GetTop(Type,loadKey,Subtype)
 
                 if(loadType == LoadType.REFRESH)
                 {
