@@ -2,7 +2,6 @@ package myanimez.com.Repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import myanimez.com.Model.Anime
 import myanimez.com.Response.ScheduleResponse
 import myanimez.com.WebService.AnimeApi
 import retrofit2.HttpException

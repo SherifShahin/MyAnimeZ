@@ -9,7 +9,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import myanimez.com.Fragment.SearchFragmentDirections
-import myanimez.com.Model.Anime
 import myanimez.com.Model.SearchResult
 import myanimez.com.R
 

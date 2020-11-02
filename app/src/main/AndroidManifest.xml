@@ -13,9 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".MyApplication"
+        android:name="myanimez.com.MyApplication"
         >
-        <activity android:name=".MainActivity">
+        <activity android:name="myanimez.com.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -2,9 +2,6 @@ package myanimez.com.Repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import myanimez.com.DataBase.AppDao
 import myanimez.com.Model.AnimeCharacter
 import myanimez.com.Model.AnimeDetails
