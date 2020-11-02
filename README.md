@@ -32,3 +32,5 @@ Android App for Anime which use MyAnimeList Data.
  - Navigation component
  - Koin
  - Material Design
+ - Kotlin coroutines
+
